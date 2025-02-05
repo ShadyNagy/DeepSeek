@@ -25,7 +25,7 @@ public class DeepSeekClient : IDeepSeekClient
             };
   }
 
-  public async Task<string> SendMessageAsync(string userMessage, DeepSeekModel model = DeepSeekModel.V3)
+  public async Task<string> SendMessageAsync(string userMessage, DeepSeekModel model = DeepSeekModel.V3, int temperature = 1)
   {
     if (string.IsNullOrWhiteSpace(userMessage))
       throw new ArgumentException("Message cannot be empty", nameof(userMessage));
@@ -41,6 +41,7 @@ public class DeepSeekClient : IDeepSeekClient
 
     var requestPayload = new
     {
+      temperature = temperature,
       model = modelName,
       messages = _messages,
       stream = false

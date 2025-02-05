@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using DeepSeek.ApiClient.Interfaces;
 using DeepSeek.ApiClient.Extensions;
+using DeepSeek.ApiClient.Models;
 
 namespace DeepSeek.ConsoleApp;
 
@@ -16,7 +17,7 @@ internal class Program
     var deepSeekClient = serviceProvider.GetRequiredService<IDeepSeekClient>();
 
     Console.WriteLine("Send message is started.");
-    string response = await deepSeekClient.SendMessageAsync("How can I improve my C# skills?");
+    string response = await deepSeekClient.SendMessageAsync("How can I improve my C# skills?", DeepSeekModel.V3, 0);
     Console.WriteLine("Response: " + response);
   }
 }
