@@ -45,7 +45,7 @@ namespace DeepSeekExample
         static async Task Main(string[] args)
         {
             var services = new ServiceCollection();
-            services.AddDeepSeekClient("https://api.deepseek.com", "your-api-key", "You are a technical assistant.");
+            services.AddDeepSeekClient("your-api-key", "https://api.deepseek.com", "You are a technical assistant.");
 
             var serviceProvider = services.BuildServiceProvider();
             var deepSeekClient = serviceProvider.GetRequiredService<IDeepSeekClient>();
