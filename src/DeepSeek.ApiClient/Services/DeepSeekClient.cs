@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -14,7 +13,7 @@ public class DeepSeekClient : IDeepSeekClient
 {
   private readonly HttpClient _httpClient;
   private readonly DeepSeekSettings _settings;
-  private readonly List<DeepSeekMessage> _messages;
+  private List<DeepSeekMessage> _messages;
 
   public DeepSeekClient(HttpClient httpClient, DeepSeekSettings settings)
   {
@@ -69,5 +68,16 @@ public class DeepSeekClient : IDeepSeekClient
 
     _messages.Add(new DeepSeekMessage("assistant", assistantReply));
     return assistantReply;
+  }
+
+  public void ClearMessages()
+  {
+    _messages.Clear();
+    _messages.Add(new DeepSeekMessage("system", _settings.SystemMessage));
+  }
+
+  public List<DeepSeekMessage> GetMessages()
+  {
+    return _messages;
   }
 }
