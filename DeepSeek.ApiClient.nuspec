@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DeepSeek.ApiClient</id>
+    <title>DeepSeek ApiClient</title>
+    <version>1.0.0</version>
+    <authors>Shady Nagy</authors>
+    <description>
+	DeepSeek.ApiClient is a .NET API Client designed to interact with the DeepSeek API, allowing developers to easily send and receive messages from DeepSeek’s AI models. 
+    </description>
+    <language>en-US</language>
+    <license type="expression">MIT</license>
+    <RepositoryUrl>https://github.com/ShadyNagy/DeepSeek</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <projectUrl>https://github.com/ShadyNagy/DeepSeek</projectUrl>
+    <releaseNotes>Added support for DeepSeek API and .NET 8.</releaseNotes>
+    <tags>AI,DeepSeek, DeepSeek API, DeepSeek ApiCLient, DeepSeek Api Client</tags>
+    <icon>icon.png</icon>
+    <copyright>Copyright 2019 - 2025 (c) Shady Nagy. All rights reserved.</copyright>
+    <readme>README.md</readme>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    
+    <!-- Dependencies -->
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Microsoft.Extensions.DependencyInjection.Abstractions" version="8.0.0" />
+        <dependency id="Microsoft.Extensions.Http" version="8.0.0" />
+      </group>
+    </dependencies>
+
+
+  </metadata>
+  
+  <files>    
+    <file src="src\DeepSeek.ApiClient\bin\Release\net80\DeepSeek.ApiClient.dll" target="lib\net80" />
+    <file src="icon.png" />
+    <file src="README.md" />
+  </files>
+</package>
