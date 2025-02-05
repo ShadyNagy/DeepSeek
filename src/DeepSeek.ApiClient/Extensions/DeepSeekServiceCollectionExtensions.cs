@@ -17,6 +17,7 @@ public static class DeepSeekServiceCollectionExtensions
     services.AddSingleton(settings);
     services.AddHttpClient<IDeepSeekClient, DeepSeekClient>();
 
+
     return services;
   }
 }
