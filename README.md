@@ -40,20 +40,28 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DeepSeekExample
 {
-    class Program
+  class Program
+  {
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
-        {
-            var services = new ServiceCollection();
-            services.AddDeepSeekClient("your-api-key", "https://api.deepseek.com", "You are a technical assistant.");
+      Console.WriteLine("Application is started.");
+      var services = new ServiceCollection();
+      services.AddDeepSeekClient(AppConstants.API_KEY);
 
-            var serviceProvider = services.BuildServiceProvider();
-            var deepSeekClient = serviceProvider.GetRequiredService<IDeepSeekClient>();
+      var serviceProvider = services.BuildServiceProvider();
+      var deepSeekClient = serviceProvider.GetRequiredService<IDeepSeekClient>();
 
-            string response = await deepSeekClient.SendMessageAsync("What is the best way to learn C#?");
-            Console.WriteLine(response);
-        }
+      Console.WriteLine("Send message is started.");
+      var request = new DeepSeekRequestBuilder()
+        .SetModel(DeepSeekModel.V3)
+        .SetStream(false)
+        .SetTemperature(0)
+        .AddUserMessage("How can I improve my C# skills?");
+
+      string response = await deepSeekClient.SendMessageAsync(request.Build());
+      Console.WriteLine("Response: " + response);
     }
+  }
 }
 ```
 

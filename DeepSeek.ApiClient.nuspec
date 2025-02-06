@@ -3,7 +3,7 @@
   <metadata>
     <id>DeepSeek.ApiClient</id>
     <title>DeepSeek ApiClient</title>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>Shady Nagy</authors>
     <description>
 	DeepSeek.ApiClient is a .NET API Client designed to interact with the DeepSeek API, allowing developers to easily send and receive messages from DeepSeek’s AI models. 
