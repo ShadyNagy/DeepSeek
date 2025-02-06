@@ -28,6 +28,11 @@ public class DeepSeekClient : IDeepSeekClient
   }
   public async Task<string> SendMessageAsync(DeepSeekRequest request)
   {
+    if (!request.Messages.Any() && !string.IsNullOrEmpty(_settings.SystemMessage))
+    {
+      request.Messages.Add(new DeepSeekMessage("system", _settings.SystemMessage));
+    }
+
     var json = JsonSerializer.Serialize(request, _jsonOptions);
     var requestContent = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -50,10 +55,6 @@ public class DeepSeekClient : IDeepSeekClient
       .SetModel(model)
       .SetStream(false);
 
-    if (!string.IsNullOrEmpty(_settings.SystemMessage))
-    {
-      request.AddSystemMessage(_settings.SystemMessage);
-    }
     request.AddUserMessage(userMessage);
 
     return await SendMessageAsync(request.Build());
@@ -68,10 +69,6 @@ public class DeepSeekClient : IDeepSeekClient
       .SetModel(model)
       .SetStream(false);
 
-    if (!string.IsNullOrEmpty(_settings.SystemMessage))
-    {
-      request.AddSystemMessage(_settings.SystemMessage);
-    }
     foreach(var userMessage in userMessages)
     {
       request.AddUserMessage(userMessage);
