@@ -6,5 +6,6 @@ namespace DeepSeek.ApiClient.Interfaces;
 public interface IDeepSeekClient
 {
   Task<string> SendMessageAsync(string userMessage, DeepSeekModel model = DeepSeekModel.V3);
+  Task<string> SendMessageAsync(IEnumerable<string> userMessages, DeepSeekModel model = DeepSeekModel.V3);
   Task<string> SendMessageAsync(DeepSeekRequest request);
 }

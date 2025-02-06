@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -55,5 +57,26 @@ public class DeepSeekClient : IDeepSeekClient
     request.AddUserMessage(userMessage);
 
     return await SendMessageAsync(request.Build());
-  } 
+  }
+
+  public async Task<string> SendMessageAsync(IEnumerable<string> userMessages, DeepSeekModel model = DeepSeekModel.V3)
+  {
+    if (userMessages.Count() <= 0)
+      throw new ArgumentException("Messages cannot be empty", nameof(userMessages));
+
+    var request = new DeepSeekRequestBuilder()
+      .SetModel(model)
+      .SetStream(false);
+
+    if (!string.IsNullOrEmpty(_settings.SystemMessage))
+    {
+      request.AddSystemMessage(_settings.SystemMessage);
+    }
+    foreach(var userMessage in userMessages)
+    {
+      request.AddUserMessage(userMessage);
+    }    
+
+    return await SendMessageAsync(request.Build());
+  }
 }
