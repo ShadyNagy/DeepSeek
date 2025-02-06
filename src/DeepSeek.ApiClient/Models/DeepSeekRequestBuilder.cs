@@ -28,6 +28,22 @@ public class DeepSeekRequestBuilder
     return this;
   }
 
+  public DeepSeekRequestBuilder SetSystemMessage(string content)
+  {
+    var systemMessage = new DeepSeekMessage("system", content);
+
+    if (_request.Messages.Count > 0 && _request.Messages[0].Role == "system")
+    {
+      _request.Messages[0] = systemMessage;
+    }
+    else
+    {
+      _request.Messages.Insert(0, systemMessage);
+    }
+
+    return this;
+  }
+
   public DeepSeekRequestBuilder AddMessage(string role, string content)
   {
     _request.Messages.Add(new DeepSeekMessage(role, content));

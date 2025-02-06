@@ -56,6 +56,7 @@ namespace DeepSeekExample
         .SetModel(DeepSeekModel.V3)
         .SetStream(false)
         .SetTemperature(0)
+        .SetSystemMessage("You are a professional technical assistant.")
         .AddUserMessage("How can I improve my C# skills?");
 
       string response = await deepSeekClient.SendMessageAsync(request.Build());
